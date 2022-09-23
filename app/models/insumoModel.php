@@ -37,9 +37,11 @@ class insumoModel {
      * Consulta por ID un determinado insumo
      */
     function getById($id){
-        $query = $this->db->prepare("SELECT id_insumo, insumo, unidad_medida, id_tipo_insumo FROM insumo WHERE id_insumo = ?");
+        $query = $this->db->prepare("SELECT id_insumo, insumo, unidad_medida, tipo_insumo FROM insumo INNER JOIN tipo_insumo ON insumo.id_tipo_insumo=tipo_insumo.id_tipo_insumo WHERE id_insumo = ?");
+        // $query = $this->db->prepare("SELECT id_insumo, insumo, unidad_medida, id_tipo_insumo FROM insumo WHERE id_insumo = ?");
         $query->execute([$id]);
-        $insumo = $query->fetch(PDO::FETCH_OBJ);
+        $insumo = $query->fetch(PDO::FETCH_ASSOC);
+        // $insumo = $query->fetch(PDO::FETCH_OBJ);
         return $insumo;
     }
 

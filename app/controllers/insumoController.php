@@ -21,7 +21,7 @@ class insumoController{
     function showInsumoById($id){
         $insumo = $this->model->getById($id);
         // actualizo la vista
-        $this->view->renderinsumoById($insumo);
+        $this->view->renderInsumoById($insumo);
     }
 
     function deleteInsumoById($id){

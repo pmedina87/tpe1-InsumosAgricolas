@@ -7,7 +7,7 @@ class tipoInsumoView{
      * Consulta para mostrar todos los tipos de insumos
      */
     function renderAllTiposInsumos($tiposInsumos){
-        echo "<h1>Lista de Tipos de Insumos</h1>";
+        echo "<h1  class='m-3'>Lista de Tipos de Insumos</h1>";
         // tabla de tipos de insumos
         echo "<table class='table'>
         <thead>

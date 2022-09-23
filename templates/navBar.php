@@ -1,32 +1,44 @@
 
 <div>
-  <nav class="navbar navbar-expand-lg navbar-secondary bg-dark">
-      <a class="navbar-brand" href="Home">LOGO</a>
 
-      <div class="navBar-menu">
-        <ul class="navbar-nav mr-auto">
-              <li class="nav-item active">
-                  <a href="Home">Home</a>
-              </li>
-              <li>
-                <a href="Add_Tipo_Insumo">Agregar Tipo de Insumo</a></a>
-              </li>
-              <li>
-                <a href="Tipos_Insumos">Listado de Tipos de Insumos</a>
-              </li>
-              <li>
-                <a href="Add_Insumo">Agregar Insumo</a>
-              </li>
-              <li>
-                <a href="Insumos">Listado de Insumos</a>
-              </li>
-          </ul>
+  <nav class="navbar bg-dark">
+    <form class="container-fluid justify-content-start">
+
+      <div>
+        <a href="Home">
+          <button class="btn btn-outline-success me-2" type="button">Home</button>
+        </a>
       </div>
-      <form class="form-inline my-2 my-lg-0">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
-      </form>
 
+      <div>
+        <a href="Add_Tipo_Insumo">
+          <button class="btn btn-sm btn-outline-warning me-2" type="button">Agregar Tipo Insumo</button>
+        </a>
+      </div>
+      
+      <div>
+        <a href="Tipos_Insumos">
+          <button class="btn btn-sm btn-outline-warning me-2" type="button">Lista de Tipo de Insumos</button>
+        </a>
+      </div>
+      
+      <div>
+        <a href="Add_Insumo">
+          <button class="btn btn-sm btn-outline-warning me-2" type="button">Agregar Insumo</button>
+        </a>
+      </div>
+      
+      <div>
+        <a href="Insumos">
+          <button class="btn btn-sm btn-outline-warning me-2" type="button">Lista de Insumos</button>
+        </a>
+      </div>
+
+      <div>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
+      </div>
+
+    </form>
   </nav>
 </div>
-
 

@@ -7,8 +7,8 @@ class insumoView{
      * Consulta para mostrar todos los insumos
      */
     function renderAllInsumos($insumos){
-        echo "<h1>Lista de Insumos</h1>";
-        // tabla de tipos de insumos
+        echo "<h1 class='m-3'>Lista de Insumos</h1>";
+        // tabla de insumos
         echo "<table class='table'>
         <thead>
             <tr>
@@ -61,11 +61,11 @@ class insumoView{
      */
     function renderInsumoById($insumo) {
         include 'templates/form_alta_insumo.php';
-        $id = $insumo->id_insumo;
-        $insumo = $insumo->insumo;
-        $unidad_medida = $insumo->unidad_medida;
-        $id_tipo_insumo = $insumo->id_tipo_insumo;
-        
+        $id = $insumo['id_insumo'];
+        $insumo = $insumo['insumo'];
+        $unidad_medida = $insumo['unidad_medida'];
+        $tipo_insumo = $insumo['tipo_insumo'];
+        // var_dump($id, $insuma, $unidad_medida, $tipo_insumo);
     }
 
     /**
