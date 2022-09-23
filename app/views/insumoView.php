@@ -24,13 +24,14 @@ class insumoView{
         foreach($insumos as $insumo) {
             echo "
                 <tr>
-                    <td>$insumo->id_insumo</td>
-                    <td>$insumo->insumo</td>
-                    <td>$insumo->unidad_medida</td>
-                    <td>$insumo->id_tipo_insumo</td>
+                    <td>$insumo[id_insumo]</td>
+                    <td>$insumo[insumo]</td>
+                    <td>$insumo[unidad_medida]</td>
+                    <td>$insumo[tipo_insumo]</td>
+                    
                     <td>
-                    <a href='Edit_Insumo/$insumo->id_insumo' type='button' class='btn btn-primary ml-auto'>Editar</a> 
-                    <a href='Delete_Insumo/$insumo->id_insumo' type='button' class='btn btn-danger ml-auto'>Eliminar</a>
+                    <a href='Edit_Insumo/$insumo[id_insumo]' type='button' class='btn btn-primary ml-auto'>Editar</a> 
+                    <a href='Delete_Insumo/$insumo[id_insumo]' type='button' class='btn btn-danger ml-auto'>Eliminar</a>
                     </td>
                 </tr>
             ";
