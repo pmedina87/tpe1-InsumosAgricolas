@@ -1,7 +1,7 @@
 <?php
 
-require_once 'tipoInsumoModel.php';
-require_once 'tipoInsumoView.php';
+require_once 'app/models/tipoInsumoModel.php';
+require_once 'app/views/tipoInsumoView.php';
 
 class tipoInsumoController{
     private $model;
@@ -20,7 +20,6 @@ class tipoInsumoController{
 
     function showTipoInsumoById($id){
         $tipoInsumo = $this->model->getTipoInsumoById($id);
-        // var_dump($tipoInsumo);
         // actualizo la vista
         $this->view->renderTipoInsumoById($tipoInsumo);
     }
@@ -28,9 +27,31 @@ class tipoInsumoController{
     function deleteTipoInsumoById($id){
         $this->model->deleteTipoInsumoById($id);
         $this->showAllTiposInsumos();
+        header("Location: " . BASE_URL . "Tipos_Insumos"); 
+        // var_dump($tipoInsumo);
+        // actualizo la vista
+        // $this->view->renderTipoInsumoById($tipoInsumo);
+    }
+
+    function showFormAddInsumo(){
+        $this->view->renderAddInsumo();
+        // $this->showAllTiposInsumos();
         // header("Location: " . BASE_URL); 
         // var_dump($tipoInsumo);
         // actualizo la vista
         // $this->view->renderTipoInsumoById($tipoInsumo);
+    }
+
+    function saveNewInsumo(){
+        if (empty($_POST['tInsumo'])) {
+            $msg = "Debe completar los datos obligatorios";
+            $this->view->renderError($msg);
+        }
+        else {
+            $tipo_insumo = $_POST['tInsumo'];
+            $this->model->addTipoInsumo($tipo_insumo);
+            $this->showAllTiposInsumos();
+        }
+        header("Location: " . BASE_URL . "Tipos_Insumos");
     }
 }

@@ -38,18 +38,34 @@ class tipoInsumoView{
     /**
      * Muestra pantalla de error
      */
-    function renderError() {
-        echo "<h2>Error!</h2>";
+    function renderError($msg) {
+        echo "<h1> Error! </h1>";
+        echo "<h2> $msg </h2>";
+    }
+
+    /**
+     * Muestra pantalla de ejecutado correctamente
+     */
+    function renderOk($msg) {
+        echo "<h1> Se ejecuto correctamente! </h1>";
+        echo "<h2> $msg </h2>";
     }
 
     /**
      * Muestra los datos de un insumo determinado, para poder editarlo
      */
     function renderTipoInsumoById($tipoInsumo) {
-        include './templates/form_alta_tipo_insumo.php';
+        include 'templates/form_alta_tipo_insumo.php';
         $id = $tipoInsumo->id_tipo_insumo;
         $tipoInsumo = $tipoInsumo->tipo_insumo;
         
+    }
+
+    /**
+     * Render para agregar un tipo de insumo
+     */
+    function renderAddInsumo() {
+        include 'templates/form_alta_tipo_insumo.php';
     }
 }
      
