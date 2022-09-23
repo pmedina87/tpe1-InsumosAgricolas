@@ -25,8 +25,8 @@ class tipoInsumoView{
                     <td>$tipoInsumo->id_tipo_insumo</td>
                     <td>$tipoInsumo->tipo_insumo</td>
                     <td>
-                    <a href='Edit/$tipoInsumo->id_tipo_insumo' type='button' class='btn btn-primary ml-auto'>Editar</a> 
-                    <a href='Delete/$tipoInsumo->id_tipo_insumo' type='button' class='btn btn-danger ml-auto'>Eliminar</a>
+                    <a href='Edit_Tipo_Insumo/$tipoInsumo->id_tipo_insumo' type='button' class='btn btn-primary ml-auto'>Editar</a> 
+                    <a href='Delete_Tipo_Insumo/$tipoInsumo->id_tipo_insumo' type='button' class='btn btn-danger ml-auto'>Eliminar</a>
                     </td>
                 </tr>
             ";
@@ -64,7 +64,7 @@ class tipoInsumoView{
     /**
      * Render para agregar un tipo de insumo
      */
-    function renderAddInsumo() {
+    function renderAddTipoInsumo() {
         include 'templates/form_alta_tipo_insumo.php';
     }
 }

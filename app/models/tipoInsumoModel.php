@@ -2,10 +2,18 @@
 
 class tipoInsumoModel {
 
+    private $db;
+
+    function __construct() {
+        //1. abrimos la conexion
+        $this->db = $this->connection();
+    }
+
     /**
      * Conexion a base de datos
+     * Funcion privada para que nadie (que no este dentro de la misma clase), pueda acceder
      */
-    function conexion(){
+    private function connection(){
         $db = new PDO('mysql:host=localhost;'.'dbname=db_insumos_agricolas;charset=utf8', 'root', '');
         return $db;
     }
@@ -13,11 +21,9 @@ class tipoInsumoModel {
     /**
      * Consulta para mostrar todos los tipos de insumos
      */
-    function getAllTipoInsumo(){
-        //1. abrimos la conexion
-        $db = $this->conexion();
+    function getAll(){
         //2. preparamos la consulta
-        $query = $db->prepare("SELECT * FROM tipo_insumo");
+        $query = $this->db->prepare("SELECT * FROM tipo_insumo");
         //3. ejecutamos la consulta
         $query->execute();
         //4. recuperamos los datos de la consulta
@@ -28,10 +34,8 @@ class tipoInsumoModel {
     /**
      * Consulta por ID un determinado tipo de insumo
      */
-    function getTipoInsumoById($id){
-        //1. abrimos la conexion
-        $db = $this->conexion();
-        $query = $db->prepare("SELECT id_tipo_insumo, tipo_insumo FROM tipo_insumo WHERE id_tipo_insumo = ?");
+    function getById($id){
+        $query = $this->db->prepare("SELECT id_tipo_insumo, tipo_insumo FROM tipo_insumo WHERE id_tipo_insumo = ?");
         $query->execute([$id]);
         $tipoInsumo = $query->fetch(PDO::FETCH_OBJ);
         return $tipoInsumo;
@@ -40,30 +44,24 @@ class tipoInsumoModel {
     /**
      * Agrega un nuevo Tipo de Insumo
      */
-    function addTipoInsumo($tipo_insumo){
-        //1. abrimos la conexion
-        $db = $this->conexion();
-        $query = $db->prepare("INSERT INTO tipo_insumo(tipo_insumo) VALUES (?)");
+    function add($tipo_insumo){
+        $query = $this->db->prepare("INSERT INTO tipo_insumo(tipo_insumo) VALUES (?)");
         $query->execute([$tipo_insumo]);    
     }
 
     /**
      * Elimina un tipo de insumo
      */
-    function deleteTipoInsumoById($id_tipo_insumo){
-        //1. abrimos la conexion
-        $db = $this->conexion();
-        $query = $db->prepare("DELETE FROM tipo_insumo WHERE id_tipo_insumo = ?");
+    function delete($id_tipo_insumo){
+        $query = $this->db->prepare("DELETE FROM tipo_insumo WHERE id_tipo_insumo = ?");
         $query->execute([$id_tipo_insumo]);   
     }
 
     /**
      * Edita un tipo de insumo
      */
-    function updateTipoInsumo($id_tipo_insumo, $tipo_insumo){
-        //1. abrimos la conexion
-        $db = $this->conexion();
-        $query = $db->prepare("UPDATE tipo_insumo SET tipo_insumo = ? WHERE id_tipo_insumo = ?");
+    function update($id_tipo_insumo, $tipo_insumo){
+        $query = $this->db->prepare("UPDATE tipo_insumo SET tipo_insumo = ? WHERE id_tipo_insumo = ?");
         $query->execute([$tipo_insumo, $id_tipo_insumo]);   
     }
 
