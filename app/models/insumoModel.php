@@ -23,11 +23,13 @@ class insumoModel {
      */
     function getAll(){
         //2. preparamos la consulta
-        $query = $this->db->prepare("SELECT * FROM insumo");
+        // $query = $this->db->prepare("SELECT * FROM insumo");
+        $query = $this->db->prepare("SELECT id_insumo, insumo, unidad_medida, tipo_insumo FROM insumo INNER JOIN tipo_insumo ON insumo.id_tipo_insumo=tipo_insumo.id_tipo_insumo");
         //3. ejecutamos la consulta
         $query->execute();
         //4. recuperamos los datos de la consulta
-        $insumos = $query->fetchAll(PDO::FETCH_OBJ);
+        $insumos = $query->fetchAll(PDO::FETCH_ASSOC);
+        // $insumos = $query->fetchAll(PDO::FETCH_OBJ);
         return $insumos;
     }
 
