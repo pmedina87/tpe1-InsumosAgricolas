@@ -12,7 +12,10 @@
     <input type="text" id="tipo_insumo" name="tipo_insumo" value="">
   
     <input type="submit" class='btn btn-primary ml-auto' value="Agregar">
-    <input type="button" class='btn btn-danger ml-auto' value="Cancelar">
+    <a href="Insumos">
+        <input type="button" class='btn btn-danger ml-auto' value="Cancelar">
+    </a>
+    
 </form> 
 
 <?php
