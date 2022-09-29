@@ -2,14 +2,12 @@
 require_once ('app/controllers/tipoInsumoController.php');
 require_once ('app/controllers/insumoController.php');
 require_once ('templates/home.php');
-// require_once 'about.php';
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
 // leo el parametro accion
 $action = 'Home'; // accion por defecto
 if (!empty($_GET['action'])) {
-    // var_dump($_GET);
     $action = $_GET['action'];  // action => about/juan
 }
 
@@ -28,7 +26,11 @@ switch ($params[0]) {
     case 'Edit_Tipo_Insumo':
         $id = $params[1];
         $controller = new tipoInsumoController();
-        $controller->showTipoInsumoById($id);
+        $controller->showFormUpdateTipoInsumoById($id);
+        break;
+    case 'Update_Tipo_Insumo':
+        $controller = new tipoInsumoController();
+        $controller->saveUpdateTipoInsumo();
         break;
     case 'Delete_Tipo_Insumo':
         $id = $params[1];
@@ -63,16 +65,8 @@ switch ($params[0]) {
         $id = $params[1];
         $controller = new insumoController();
         $controller->deleteInsumoById($id);
-//     case 'about':
-//         if (empty($params[1])) {
-//             showAbout();
-//         } else {
-//             showAbout($params[1]);
-//         }
-//         break;
     default:
         header("HTTP/1.1 404 Not Found");
         echo "404 not found";
-        # code...
         break;
 }
