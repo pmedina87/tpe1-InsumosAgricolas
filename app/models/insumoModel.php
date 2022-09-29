@@ -4,8 +4,10 @@ class insumoModel {
 
     private $db;
 
+    /**
+     * Constructor de la clase insumoModel
+     */
     function __construct() {
-        //1. abrimos la conexion
         $this->db = $this->connection();
     }
 
@@ -25,9 +27,7 @@ class insumoModel {
         //2. preparamos la consulta
         // $query = $this->db->prepare("SELECT * FROM insumo");
         $query = $this->db->prepare("SELECT id_insumo, insumo, unidad_medida, tipo_insumo FROM insumo INNER JOIN tipo_insumo ON insumo.id_tipo_insumo=tipo_insumo.id_tipo_insumo");
-        //3. ejecutamos la consulta
         $query->execute();
-        //4. recuperamos los datos de la consulta
         $insumos = $query->fetchAll(PDO::FETCH_ASSOC);
         // $insumos = $query->fetchAll(PDO::FETCH_OBJ);
         return $insumos;
@@ -40,7 +40,7 @@ class insumoModel {
         $query = $this->db->prepare("SELECT id_insumo, insumo, unidad_medida, tipo_insumo FROM insumo INNER JOIN tipo_insumo ON insumo.id_tipo_insumo=tipo_insumo.id_tipo_insumo WHERE id_insumo = ?");
         // $query = $this->db->prepare("SELECT id_insumo, insumo, unidad_medida, id_tipo_insumo FROM insumo WHERE id_insumo = ?");
         $query->execute([$id]);
-        $insumo = $query->fetch(PDO::FETCH_ASSOC);
+        $insumo = $query->fetch(PDO::FETCH_OBJ);
         // $insumo = $query->fetch(PDO::FETCH_OBJ);
         return $insumo;
     }
@@ -48,9 +48,9 @@ class insumoModel {
     /**
      * Agrega un nuevo Insumo
      */
-    function add($insumo, $unidad_medida, $tipo_insumo){
-        $query = $this->db->prepare("INSERT INTO insumo(tipo_insumo, unidad_medida, id_tipo_insumo) VALUES (?, ?, ?)");
-        $query->execute([$insumo, $unidad_medida, $tipo_insumo]);    
+    function add($insumo, $unidad_medida, $id_tipo_insumo){
+        $query = $this->db->prepare("INSERT INTO insumo (`insumo`, `unidad_medida`, `id_tipo_insumo`) VALUES (?, ?, ?)");
+        $query->execute([$insumo, $unidad_medida, $id_tipo_insumo]);    
     }
 
     /**

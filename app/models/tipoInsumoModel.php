@@ -4,7 +4,10 @@ class tipoInsumoModel {
 
     private $db;
 
-    function __construct() {
+    /**
+     * Constructor de la clase tipoInsumoModel
+     */
+    public function __construct() {
         //1. abrimos la conexion
         $this->db = $this->connection();
     }
@@ -22,11 +25,8 @@ class tipoInsumoModel {
      * Consulta para mostrar todos los tipos de insumos
      */
     function getAll(){
-        //2. preparamos la consulta
         $query = $this->db->prepare("SELECT * FROM tipo_insumo");
-        //3. ejecutamos la consulta
         $query->execute();
-        //4. recuperamos los datos de la consulta
         $tiposInsumos = $query->fetchAll(PDO::FETCH_OBJ);
         return $tiposInsumos;
     }
