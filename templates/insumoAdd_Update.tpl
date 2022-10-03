@@ -21,7 +21,12 @@
                 <label for="tipo_insumo">Tipo de Insumo:</label>
                 <input type="hidden" name="tipo_insumo">
                 <select id = "tipo_insumo" name = "tipo_insumo">
-                    <option value="{$idTipoInsumo}">{$tipoInsumo}</option>
+                    {foreach from=$tiposInsumos item=$tipoInsumo}
+                        {if $tipoInsumo->id_tipo_insumo == $idTipoInsumo}
+                            <option value="{$tipoInsumo->id_tipo_insumo}">
+                            {$tipoInsumo->tipo_insumo}</option>
+                        {/if}        
+                    {/foreach}            
                     {foreach from=$tiposInsumos item=$tipoInsumo}
                         <option value="{$tipoInsumo->id_tipo_insumo}">{$tipoInsumo->tipo_insumo}</option>
                     {/foreach}
