@@ -18,7 +18,9 @@
         </a>
       </div>
       <div class="login">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
+        <a href="Login">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="button">Login</button>
+        </a>
       </div>
     </form>
   </nav>
