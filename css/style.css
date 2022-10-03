@@ -1,3 +1,15 @@
 li span {
     font-weight: bold;
 }
+
+img {
+    margin: auto;
+    margin-top: 15px;
+    display: block;
+    width: 450px;
+    height: 450px;
+    }
+
+table {
+    text-align: center;
+}
