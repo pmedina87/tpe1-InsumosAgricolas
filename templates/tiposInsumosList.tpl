@@ -29,4 +29,20 @@
     </tbody>   
 </table>
 
+<div class='m-4'>
+    {if $cantidad > 1}
+        <p>Mostrando {$cantidad} registros </p>
+    {elseif $cantidad == 1}
+        <p>Mostrando {$cantidad} registro </p>
+    {else}
+        <p>No hay registros para mostrar </p>
+    {/if}
+</div>
+
+<div class="m-4">
+    <a href="Add_Tipo_Insumo">
+      <button class='btn btn-primary ml-auto' type="button">Agregar Tipo Insumo</button>
+    </a>
+</div> 
+
 {include file="footer.tpl"}
