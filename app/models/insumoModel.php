@@ -26,10 +26,10 @@ class insumoModel {
     function getAll(){
         //2. preparamos la consulta
         // $query = $this->db->prepare("SELECT * FROM insumo");
-        $query = $this->db->prepare("SELECT id_insumo, insumo, unidad_medida, tipo_insumo FROM insumo INNER JOIN tipo_insumo ON insumo.id_tipo_insumo=tipo_insumo.id_tipo_insumo");
+        $query = $this->db->prepare("SELECT id_insumo, insumo, unidad_medida, id_tipo_insumo FROM insumo");
         $query->execute();
-        $insumos = $query->fetchAll(PDO::FETCH_ASSOC);
-        // $insumos = $query->fetchAll(PDO::FETCH_OBJ);
+        // $insumos = $query->fetchAll(PDO::FETCH_ASSOC);
+        $insumos = $query->fetchAll(PDO::FETCH_OBJ);
         return $insumos;
     }
 
@@ -37,11 +37,9 @@ class insumoModel {
      * Consulta por ID un determinado insumo
      */
     function getById($id){
-        $query = $this->db->prepare("SELECT id_insumo, insumo, unidad_medida, tipo_insumo FROM insumo INNER JOIN tipo_insumo ON insumo.id_tipo_insumo=tipo_insumo.id_tipo_insumo WHERE id_insumo = ?");
-        // $query = $this->db->prepare("SELECT id_insumo, insumo, unidad_medida, id_tipo_insumo FROM insumo WHERE id_insumo = ?");
+        $query = $this->db->prepare("SELECT id_insumo, insumo, unidad_medida, id_tipo_insumo FROM insumo WHERE id_insumo = ?");
         $query->execute([$id]);
         $insumo = $query->fetch(PDO::FETCH_OBJ);
-        // $insumo = $query->fetch(PDO::FETCH_OBJ);
         return $insumo;
     }
 
@@ -65,8 +63,18 @@ class insumoModel {
      * Edita un insumo
      */
     function update($id_insumo, $insumo, $unidad_medida, $id_tipo_insumo){
-        $query = $this->db->prepare("UPDATE insumo, unidad_medida,id_tipo_insumo SET insumo, unidad_medida,id_tipo_insumo = ?, ?, ? WHERE id_insumo = ?");
+        $query = $this->db->prepare("UPDATE insumo SET insumo = ?,unidad_medida = ?, id_tipo_insumo = ? WHERE id_insumo = ?");
         $query->execute([$insumo, $unidad_medida, $id_tipo_insumo, $id_insumo]);   
+    }
+
+     /**
+     * Consulta por ID un determinado tipo de insumo
+     */
+    function getByIdTipoInsumo($id_tipoInsumo){
+        $query = $this->db->prepare("SELECT id_insumo, insumo, unidad_medida, id_tipo_insumo FROM insumo WHERE id_tipo_insumo = ?");
+        $query->execute([$id_tipoInsumo]);
+        $insumos = $query->fetchAll(PDO::FETCH_OBJ);
+        return $insumos;
     }
 
 }
