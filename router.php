@@ -1,7 +1,8 @@
 <?php
 require_once ('app/controllers/tipoInsumoController.php');
 require_once ('app/controllers/insumoController.php');
-require_once ('templates/home.php');
+require_once ('app/controllers/homeController.php');
+
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -14,57 +15,64 @@ if (!empty($_GET['action'])) {
 // parsea la accion Ej: about/juan --> ['about', 'juan']
 $params = explode('/', $action); // genera un arreglo
     
-// $controller = new tipoInsumoController();
+$controllerTipoInsumo = new tipoInsumoController();
+$controllerInsumo = new insumoController();
+$controllerHome = new homeController();
+
 switch ($params[0]) {
     case 'Home':
-       'home.php';
+        $controllerHome->showHome();
         break;
     case 'Tipos_Insumos':
-        $controller = new tipoInsumoController();
-        $controller->showAllTiposInsumos();
+        $controllerTipoInsumo->showAllTiposInsumos();
         break;
     case 'Edit_Tipo_Insumo':
         $id = $params[1];
-        $controller = new tipoInsumoController();
-        $controller->showFormUpdateTipoInsumoById($id);
+        $controllerTipoInsumo->showFormUpdateTipoInsumoById($id);
         break;
     case 'Update_Tipo_Insumo':
-        $controller = new tipoInsumoController();
-        $controller->saveUpdateTipoInsumo();
+        $controllerTipoInsumo->saveUpdateTipoInsumo();
         break;
     case 'Delete_Tipo_Insumo':
         $id = $params[1];
-        $controller = new tipoInsumoController();
-        $controller->deleteTipoInsumoById($id);
+        $controllerTipoInsumo->deleteTipoInsumoById($id);
     case 'Add_Tipo_Insumo':
-        $controller = new tipoInsumoController();
-        $controller->showFormAddTipoInsumo();
+        $controllerTipoInsumo->showFormAddTipoInsumo();
         break;
     case 'Save_Tipo_Insumo':
-        $controller = new tipoInsumoController();
-        $controller->saveNewTipoInsumo();
+        $controllerTipoInsumo->saveNewTipoInsumo();
         break;
     case 'Insumos':
-        $controller = new insumoController();
-        $controller->showAllInsumos();
+        $controllerInsumo->showAllInsumos();
         break;
     case 'Add_Insumo':
-        $controller = new insumoController();
-        $controller->showFormAddInsumo();
+        $controllerInsumo->showFormAddInsumo();
         break;
     case 'Save_Insumo':
-        $controller = new insumoController();
-        $controller->saveNewInsumo();
+        $controllerInsumo->saveNewInsumo();
         break;
     case 'Edit_Insumo':
         $id = $params[1];
-        $controller = new insumoController();
-        $controller->showInsumoById($id);
+        $controllerInsumo->showFormUpdateInsumoById($id);
+        break;
+    case 'Update_Insumo':
+        $controllerInsumo->saveUpdateInsumo();
         break;
     case 'Delete_Insumo':
         $id = $params[1];
-        $controller = new insumoController();
-        $controller->deleteInsumoById($id);
+        $controllerInsumo->deleteInsumoById($id);
+        break;
+    case 'View_Insumo':
+        $id = $params[1];
+        $controllerInsumo->showInsumo($id);
+        break;
+    case 'View_Tipo_Insumo':
+        $id = $params[1];
+        $controllerTipoInsumo->showTipoInsumoById($id);
+        break;
+    case 'Filtrar_Tipo_Insumo':
+        $controllerInsumo->showFilterByTipoInsumo();
+        break;
     default:
         header("HTTP/1.1 404 Not Found");
         echo "404 not found";
