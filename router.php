@@ -2,6 +2,7 @@
 require_once ('app/controllers/tipoInsumoController.php');
 require_once ('app/controllers/insumoController.php');
 require_once ('app/controllers/homeController.php');
+require_once ('app/controllers/loginController.php');
 
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
@@ -18,6 +19,7 @@ $params = explode('/', $action); // genera un arreglo
 $controllerTipoInsumo = new tipoInsumoController();
 $controllerInsumo = new insumoController();
 $controllerHome = new homeController();
+$controllerLogin = new loginController();
 
 switch ($params[0]) {
     case 'Home':
@@ -72,6 +74,9 @@ switch ($params[0]) {
         break;
     case 'Filtrar_Tipo_Insumo':
         $controllerInsumo->showFilterByTipoInsumo();
+        break;
+    case 'Login':
+        $controllerLogin->showFormLogin();
         break;
     default:
         header("HTTP/1.1 404 Not Found");
