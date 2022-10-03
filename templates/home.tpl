@@ -2,9 +2,9 @@
 
 {include file="navBar.tpl"}
 
-
-
-
+<div>
+    <img src="assets\img\home_insumos.jpg" alt="insumos_home" srcset="">
+</div>
 
 
 
