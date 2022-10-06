@@ -2,7 +2,7 @@
 require_once ('app/controllers/tipoInsumoController.php');
 require_once ('app/controllers/insumoController.php');
 require_once ('app/controllers/homeController.php');
-require_once ('app/controllers/loginController.php');
+require_once ('app/controllers/usuarioController.php');
 
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
@@ -19,7 +19,7 @@ $params = explode('/', $action); // genera un arreglo
 $controllerTipoInsumo = new tipoInsumoController();
 $controllerInsumo = new insumoController();
 $controllerHome = new homeController();
-$controllerLogin = new loginController();
+$controllerUsuario = new usuarioController();
 
 switch ($params[0]) {
     case 'Home':
@@ -38,6 +38,7 @@ switch ($params[0]) {
     case 'Delete_Tipo_Insumo':
         $id = $params[1];
         $controllerTipoInsumo->deleteTipoInsumoById($id);
+        break;
     case 'Add_Tipo_Insumo':
         $controllerTipoInsumo->showFormAddTipoInsumo();
         break;
@@ -76,7 +77,24 @@ switch ($params[0]) {
         $controllerInsumo->showFilterByTipoInsumo();
         break;
     case 'Login':
-        $controllerLogin->showFormLogin();
+        $controllerUsuario->showFormLogin();
+        break;
+    case 'Usuarios':
+        $controllerUsuario->showAllUsuario();
+        break;
+    case 'Add_Usuario':
+        $controllerUsuario->showFormAddUsuario();
+        break;
+    case 'Save_Usuario':
+        $controllerUsuario->saveNewUsuario();
+        break;
+    case 'Delete_Usuario':
+        $id = $params[1]; 
+        $controllerUsuario->deleteUsuarioById($id);
+        break;
+    case 'Edit_Usuario':
+        $id = $params[1];
+        $controllerInsumo->showFormUpdateUsuarioById($id);
         break;
     default:
         header("HTTP/1.1 404 Not Found");
