@@ -23,22 +23,6 @@ class tipoInsumoView{
         $this->smarty->assign('cantidad', $cant_elementos);
         $this->smarty->display('tiposInsumosList.tpl');
     }
-    
-    /**
-     * Muestra pantalla de error
-     */
-    function renderError($msg) {
-        echo "<h1> Error! </h1>";
-        echo "<h2> $msg </h2>";
-    }
-
-    /**
-     * Muestra pantalla de ejecutado correctamente
-     */
-    function renderOk($msg) {
-        echo "<h1> Se ejecuto correctamente! </h1>";
-        echo "<h2> $msg </h2>";
-    }
 
     /**
      * Muestra los datos de un insumo determinado, para poder editarlo
