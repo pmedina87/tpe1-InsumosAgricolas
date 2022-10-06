@@ -27,22 +27,6 @@ class insumoView{
     }
     
     /**
-     * Funcion que renderiza una pantalla de error, con un mensaje pasado por parametro
-     */
-    function renderError($msg) {
-        echo "<h1> Error! </h1>";
-        echo "<h2> $msg </h2>";
-    }
-
-    /**
-     * Funcion que renderiza una pantalla de ejecutado correctamente, con un mensaje pasado por parametro
-     */
-    function renderOk($msg) {
-        echo "<h1> Se ejecuto correctamente! </h1>";
-        echo "<h2> $msg </h2>";
-    }
-
-    /**
      * Funcion que renderiza todos los datos de un insumo determinado, para poder editarlo
      */
     function renderFormUpdateInsumoById($insumo, $tipos_Insumos) {
