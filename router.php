@@ -94,7 +94,7 @@ switch ($params[0]) {
         break;
     case 'Edit_Usuario':
         $id = $params[1];
-        $controllerInsumo->showFormUpdateUsuarioById($id);
+        $controllerUsuario->showFormUpdateUsuarioById($id);
         break;
     default:
         header("HTTP/1.1 404 Not Found");
