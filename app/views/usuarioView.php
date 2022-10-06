@@ -38,5 +38,15 @@ class usuarioView{
         $this->smarty->display('usuarioAdd_Update.tpl');
     }
 
+    function showFormUpdateUsuarioById($usuario){
+        $titulo = "Editar un Usuario";
+        $action = "Update_Usuario";
+        $boton = "Actualizar";
+        $this->smarty->assign('titulo', $titulo);
+        $this->smarty->assign('action', $action);
+        $this->smarty->assign('boton', $boton);
+        $this->smarty->assign('usuario', $usuario);
+        $this->smarty->display('usuarioAdd_Update.tpl');
+    }
 
 }
