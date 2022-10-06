@@ -2,7 +2,7 @@ li span {
     font-weight: bold;
 }
 
-img {
+img{
     margin: auto;
     margin-top: 15px;
     display: block;
@@ -12,4 +12,14 @@ img {
 
 table {
     text-align: center;
+}
+
+.login-form{
+    border-radius: 15px;
+    margin-top: 50px;
+    margin-left: 500px;
+    padding: 15px;
+    background: rgba(142, 138, 127, 0.781);
+    width: 350px;
+    height: 350px;
 }
