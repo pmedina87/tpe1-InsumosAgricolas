@@ -79,6 +79,9 @@ switch ($params[0]) {
     case 'Login':
         $controllerUsuario->showFormLogin();
         break;
+    case 'Ingresar':
+        $controllerUsuario->systemLogin();
+        break;
     case 'Usuarios':
         $controllerUsuario->showAllUsuario();
         break;
@@ -95,6 +98,9 @@ switch ($params[0]) {
     case 'Edit_Usuario':
         $id = $params[1];
         $controllerUsuario->showFormUpdateUsuarioById($id);
+        break;
+    case 'Update_Usuario':
+        $controllerUsuario->saveUpdateUsuario();
         break;
     default:
         header("HTTP/1.1 404 Not Found");
