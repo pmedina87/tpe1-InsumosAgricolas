@@ -22,6 +22,6 @@ class messageView{
         $this->smarty->assign('msg', $msg);
         $this->smarty->assign('redireccion', $redireccion);
         $this->smarty->assign('boton', $boton);
-        $this->smarty->display('msgError.tpl');
+        $this->smarty->display('msg.tpl');
     }
 }
