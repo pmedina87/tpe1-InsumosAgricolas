@@ -77,4 +77,26 @@ class usuarioController{
         $usuario = $this->usuarioModel->getById($id);
         $this->usuarioView->showFormUpdateUsuarioById($usuario);
     }
+
+    function saveUpdateUsuario(){
+        $id_usuario = $_POST['id'];
+        $nombre = $_POST['nombre_usuario'];
+        $apellido = $_POST['apellido_usuario'];
+        $email = $_POST['email_usuario'];
+        $this->usuarioModel->update($id_usuario, $nombre, $apellido, $email);
+        header("Location: " . BASE_URL . "Usuarios");
+    }
+
+    function systemLogin(){
+        $usuario = $this->usuarioModel->getByUsername($_POST['user']);
+        $hash = $usuario->contrasenia;
+        $pass = $_POST['password'];
+        if (password_verify($pass, $hash)){
+            echo "Acceso aceptado";
+        }
+        else{
+            echo "Acceso denegado";
+        }
+    }
+
 }
