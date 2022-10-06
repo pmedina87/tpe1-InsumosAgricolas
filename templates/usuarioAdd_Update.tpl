@@ -21,14 +21,6 @@
             <label for="email_usuario">Correo Electronico:</label>
             <input type="email" id="email_usuario" name="email_usuario" value="{$usuario->email}">
         </div>
-        <div class="m-4">
-            <label for="usuario">Nombre de Usuario:</label>
-            <input type="text" id="usuario" name="usuario" value="{$usuario->usuario}">
-        </div>
-        <div class="m-4">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" value="{$usuario->contrasenia}">
-        </div>
             
         {elseif $action == "Save_Usuario"}    
             <div class="m-4">
