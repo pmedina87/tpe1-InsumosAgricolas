@@ -74,6 +74,7 @@ class usuarioController{
     }
 
     function showFormUpdateUsuarioById($id){
-        
+        $usuario = $this->usuarioModel->getById($id);
+        $this->usuarioView->showFormUpdateUsuarioById($usuario);
     }
 }
