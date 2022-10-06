@@ -12,26 +12,40 @@ class usuarioController{
     private $usuarioView;
     private $messageView;
 
-
+    /**
+     * Constructor de la clase usuarioController.
+     */
     public function __construct() {
         $this->usuarioModel = new usuarioModel();
         $this->usuarioView = new usuarioView();
         $this->messageView = new messageView();
     }
-
+    
+    /**
+     * Funcion que muestra el formulario de login.
+     */
     function showFormLogin(){
         $this->usuarioView->renderFormLogin();
     }
 
+    /**
+     * Funcion que muestra todos los usuarios.
+     */
     function showAllUsuario(){
         $usuarios = $this->usuarioModel->getAll();
         $this->usuarioView->renderUsuariosList($usuarios);
     }
 
+    /**
+     * Funcion que muestra el formulario para agregar un nuevo usuario.
+     */
     function showFormAddUsuario(){
         $this->usuarioView->renderFormAddUsuario();
     }
 
+    /**
+     * Funcion que guarda los datos de un nuevo usuario.
+     */
     function saveNewUsuario(){
         $nombre = $_POST['nombre_usuario'];
         $apellido = $_POST['apellido_usuario'];
@@ -68,16 +82,25 @@ class usuarioController{
         }
     }
 
+    /**
+     * Funcion que elimina a un usuario.
+     */
     function deleteUsuarioById($id){
         $this->usuarioModel->delete($id);
         header("Location: " . BASE_URL . "Usuarios");
     }
 
+    /**
+     * Funcion que muestra el formulario para actualizar los datos de un usuario.
+     */
     function showFormUpdateUsuarioById($id){
         $usuario = $this->usuarioModel->getById($id);
         $this->usuarioView->showFormUpdateUsuarioById($usuario);
     }
 
+    /**
+     * Funcion que guarda los datos actualizados de un usuario.
+     */
     function saveUpdateUsuario(){
         $id_usuario = $_POST['id'];
         $nombre = $_POST['nombre_usuario'];
@@ -87,6 +110,9 @@ class usuarioController{
         header("Location: " . BASE_URL . "Usuarios");
     }
 
+    /**
+     * Funcion que corrobora que los datos ingresados en Login, sean validos con un usuario logeado.
+     */
     function systemLogin(){
         $usuario = $this->usuarioModel->getByUsername($_POST['user']);
         $hash = $usuario->contrasenia;
