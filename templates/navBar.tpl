@@ -17,7 +17,12 @@
           <button class="btn btn-sm btn-outline-warning me-2" type="button">Lista de Insumos</button>
         </a>
       </div>
-      <div class="login">
+      <div class="m-3"> 
+        <a href="Usuarios">
+          <button class="btn btn-sm btn-outline-warning me-2" type="button">Usuarios</button>
+        </a>
+      </div>
+      <div class="m-3">
         <a href="Login">
           <button class="btn btn-outline-success my-2 my-sm-0" type="button">Login</button>
         </a>
