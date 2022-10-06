@@ -6,8 +6,29 @@
 <h2 class="m-4">{$titulo}</h2>
     <form action="{$action}" method="POST">
         {if $action == "Update_Usuario"}
-            <div>
-            </div>
+        <div class="m-4">
+            <input type="number" id="id" name="id" value="{$usuario->id_usuario}" hidden>
+        </div>
+        <div class="m-4">
+            <label for="nombre_usuario">Nombre:</label>
+            <input type="text" id="nombre_usuario" name="nombre_usuario" value="{$usuario->nombre_usuario}">
+        </div>
+        <div class="m-4">
+            <label for="apellido_usuario">Apellido:</label>
+            <input type="text" id="apellido_usuario" name="apellido_usuario" value="{$usuario->apellido_usuario}">
+        </div>
+        <div class="m-4">
+            <label for="email_usuario">Correo Electronico:</label>
+            <input type="email" id="email_usuario" name="email_usuario" value="{$usuario->email}">
+        </div>
+        <div class="m-4">
+            <label for="usuario">Nombre de Usuario:</label>
+            <input type="text" id="usuario" name="usuario" value="{$usuario->usuario}">
+        </div>
+        <div class="m-4">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" value="{$usuario->contrasenia}">
+        </div>
             
         {elseif $action == "Save_Usuario"}    
             <div class="m-4">
