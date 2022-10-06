@@ -1,21 +1,24 @@
 <?php
 
 require_once 'app/models/insumoModel.php';
-require_once 'app/views/insumoView.php';
 require_once 'app/models/tipoInsumoModel.php';
+require_once 'app/views/insumoView.php';
+require_once 'app/views/messageView.php';
 
 class insumoController{
     private $insumoModel;
-    private $insumoView;
     private $tipoInsumoModel;
+    private $insumoView;
+    private $messageView;
 
     /**
      * Constructor de la clase insumoController 
     */
     public function __construct() {
         $this->insumoModel = new insumoModel();
-        $this->insumoView = new insumoView();
         $this->tipoInsumoModel = new tipoInsumoModel();
+        $this->insumoView = new insumoView();
+        $this->messageView = new messageView();
     }
 
     /**
@@ -68,13 +71,15 @@ class insumoController{
         $insumo = $_POST['insumo'];
         $unidad_medida = $_POST['unidad_medida'];
         $id_tipo_insumo = intval($_POST['tipo_insumo']);
-        if ((empty($insumo)) || (empty($unidad_medida)) || (empty($id_tipo_insumo))){
-            $msg = "Debe completar los datos obligatorios";
-            $this->insumoView->renderError($msg);
-        }
-        else {
+        if ((!empty($insumo)) || (!empty($unidad_medida)) || (!empty($id_tipo_insumo))){
             $this->insumoModel->add($insumo, $unidad_medida, $id_tipo_insumo);
             header("Location: " . BASE_URL . "Insumos");
+        }
+        else {
+            $titulo = "Error!";
+            $msg = "Debe completar los datos obligatorios";
+            $redireccion = "Insumos";
+            $this->messageView->message($titulo, $msg, $redireccion);
         }
     }
 
@@ -91,8 +96,10 @@ class insumoController{
             header("Location: " . BASE_URL . "Insumos");
         }
         else {
+            $titulo = "Error!";
             $msg = "Debe completar los datos obligatorios";
-            $this->insumoView->renderError($msg);
+            $redireccion = "Insumos";
+            $this->messageView->message($titulo, $msg, $redireccion);
         }         
     }
 
@@ -110,8 +117,16 @@ class insumoController{
      */
     function showFilterByTipoInsumo() {
         $id_tipoInsumo = $_POST['tipo_insumo'];
-        $insumos = $this->insumoModel->getByIdTipoInsumo($id_tipoInsumo);
-        $tiposInsumos = $this->tipoInsumoModel->getAll();
-        $this->insumoView->renderAllInsumos($insumos, $tiposInsumos);
+        if ($id_tipoInsumo != 0) {
+            $insumos = $this->insumoModel->getByIdTipoInsumo($id_tipoInsumo);
+            $tiposInsumos = $this->tipoInsumoModel->getAll();
+            $this->insumoView->renderAllInsumos($insumos, $tiposInsumos);
+        }
+        else {
+            $titulo = "Error!";
+            $msg = "Debe seleccionar un tipo de insumo para poder filtrar";
+            $redireccion = "Insumos";
+            $this->messageView->message($titulo, $msg, $redireccion);
+        }
     }
 }
