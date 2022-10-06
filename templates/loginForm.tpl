@@ -2,7 +2,7 @@
 
 {include file="navBar.tpl"}
 
-<div class="m-4">
+<div class="login-form">
     <div>
         <h2 class="m-4">{$titulo}</h2>
     </div>
