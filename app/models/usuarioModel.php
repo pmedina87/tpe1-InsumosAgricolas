@@ -35,10 +35,10 @@ class usuarioModel {
      * Consulta por ID un determinado usuario
      */
     function getById($id){
-        $query = $this->db->prepare("SELECT id_tipo_insumo, tipo_insumo FROM tipo_insumo WHERE id_tipo_insumo = ?");
+        $query = $this->db->prepare("SELECT id_usuario, usuario, contrasenia, email, nombre_usuario, apellido_usuario FROM usuario WHERE id_usuario = ?");
         $query->execute([$id]);
-        $tipoInsumo = $query->fetch(PDO::FETCH_OBJ);
-        return $tipoInsumo;
+        $usuario = $query->fetch(PDO::FETCH_OBJ);
+        return $usuario;
     }
 
     /**
