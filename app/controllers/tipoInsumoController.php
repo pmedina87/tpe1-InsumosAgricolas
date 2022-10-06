@@ -1,18 +1,24 @@
 <?php
 
 require_once 'app/models/tipoInsumoModel.php';
+require_once 'app/models/insumoModel.php';
 require_once 'app/views/tipoInsumoView.php';
+require_once 'app/views/messageView.php';
 
 class tipoInsumoController{
     private $tipoInsumoModel;
+    private $insumoModel;
     private $tipoInsumoView;
+    private $messageView;
 
     /**
      * Constructor de la clase tipoInsumoController
      */
     public function __construct() {
         $this->tipoInsumoModel = new tipoInsumoModel();
+        $this->insumoModel = new insumoModel();
         $this->tipoInsumoView = new tipoInsumoView();
+        $this->messageView = new messageView();
     }
 
     /**
@@ -43,8 +49,17 @@ class tipoInsumoController{
      * Funcion que elimina a un tipo de insumo
      */
     function deleteTipoInsumoById($id){
-        $this->tipoInsumoModel->delete($id);
-        header("Location: " . BASE_URL . "Tipos_Insumos"); 
+        $insumosAsocIdTipo = $this->insumoModel->getByIdTipoInsumo($id);
+        if(count($insumosAsocIdTipo) == 0){
+            $this->tipoInsumoModel->delete($id);
+            header("Location: " . BASE_URL . "Tipos_Insumos"); 
+        }
+        else {
+            $titulo = "Error!";
+            $msg = "No se puede eliminar el registro, ya que se encuentra asociado a un item.";
+            $redireccion = "Tipos_Insumos";
+            $this->messageView->message($titulo, $msg, $redireccion);; 
+        }
     }
 
     /**
@@ -59,13 +74,15 @@ class tipoInsumoController{
      */
     function saveNewTipoInsumo(){
         $tipo_insumo = $_POST['tipo_insumo'];
-        if (empty($tipo_insumo)) {
-            $msg = "Debe completar los datos obligatorios";
-            $this->tipoInsumoView->renderError($msg);
-        }
-        else {
+        if (!empty($tipo_insumo)) {
             $this->tipoInsumoModel->add($tipo_insumo);
             header("Location: " . BASE_URL . "Tipos_Insumos");
+        }
+        else {
+            $titulo = "Error!";
+            $msg = "Debe completar los datos obligatorios";
+            $redireccion = "Tipos_Insumos";
+            $this->messageView->message($titulo, $msg, $redireccion);;
         }
     }
 
@@ -80,8 +97,10 @@ class tipoInsumoController{
             header("Location: " . BASE_URL . "Tipos_Insumos");
         }
         else {
+            $titulo = "Error!";
             $msg = "Debe completar los datos obligatorios";
-            $this->tipoInsumoView->renderError($msg);
+            $redireccion = "Tipos_Insumos";
+            $this->messageView->message($titulo, $msg, $redireccion);;
         }         
     }
 
