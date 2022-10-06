@@ -57,13 +57,23 @@ class usuarioModel {
         $query->execute([$idUsuario]);   
     }
 
-    // /**
-    //  * Edita un usuario
-    //  */
-    // function update($id_tipo_insumo, $tipo_insumo){
-    //     $query = $this->db->prepare("UPDATE tipo_insumo SET tipo_insumo = ? WHERE id_tipo_insumo = ?");
-    //     $query->execute([$tipo_insumo, $id_tipo_insumo]);   
-    // }
+    /**
+     * Edita un usuario
+     */
+    function update($id_usuario, $nombre, $apellido, $email){
+        $query = $this->db->prepare("UPDATE usuario SET nombre_usuario = ?, apellido_usuario = ?, email = ? WHERE id_usuario = ?");
+        $query->execute([$nombre, $apellido, $email, $id_usuario]);   
+    }
+
+    /**
+     * Devuelve un usuario segun el nombre de usuario
+     */
+    function getByUsername($user){
+        $query = $this->db->prepare("SELECT usuario, contrasenia FROM usuario WHERE usuario = ?");
+        $query->execute([$user]);
+        $usuario = $query->fetch(PDO::FETCH_OBJ);
+        return $usuario;
+    }
 
 }
 
