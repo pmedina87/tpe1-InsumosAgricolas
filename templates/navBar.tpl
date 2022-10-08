@@ -17,16 +17,24 @@
           <button class="btn btn-sm btn-outline-warning me-2" type="button">Lista de Insumos</button>
         </a>
       </div>
-      <div class="m-3"> 
-        <a href="Usuarios">
-          <button class="btn btn-sm btn-outline-warning me-2" type="button">Usuarios</button>
-        </a>
-      </div>
-      <div class="m-3">
+      {if isset($smarty.session.USER_ID)}
+        <div class="m-3"> 
+          <a href="Usuarios">
+            <button class="btn btn-sm btn-outline-warning me-2" type="button">Usuarios</button>
+          </a>
+        </div>
+        <div class="m-3">
+          <a href="Logout">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="button">Logout ({$smarty.session.USER_NAME})</button>
+          </a>
+        </div>
+      {else}
+        <div class="m-3">
         <a href="Login">
           <button class="btn btn-outline-success my-2 my-sm-0" type="button">Login</button>
         </a>
-      </div>
+        </div>
+      {/if}
     </form>
   </nav>
 </div>
