@@ -2,12 +2,13 @@
 
 {include file="navBar.tpl"}
 
+
 <div class="login-form">
     <div>
         <h2 class="m-4">{$titulo}</h2>
     </div>
     <div>
-        <form action='Ingresar' method='POST'>
+        <form action='Validar_Usuario' method='POST'>
             <div class="mb-3">
                 <label for="user" class="form-label">Usuario</label>
                 <input type="text" class="form-control" id="user" name="user" placeholder="Ingrese su usuario" required aria-describedby="emailHelp">
@@ -22,3 +23,5 @@
         </form>
     </div>
 </div>
+
+{include file="footer.tpl"}
