@@ -2,7 +2,7 @@
 
 require_once './libs/smarty-4.2.1/libs/Smarty.class.php';
 
-class insumoView{
+class InsumoView{
 
     private $smarty;
 
