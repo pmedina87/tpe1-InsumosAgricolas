@@ -1,6 +1,6 @@
 <?php
 
-class tipoInsumoModel {
+class TipoInsumoModel {
 
     private $db;
 
