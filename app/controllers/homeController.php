@@ -1,21 +1,26 @@
 <?php
 
 require_once 'app/views/homeView.php';
+require_once 'app/helpers/authHelper.php';
 
-class homeController{
+class HomeController{
     private $homeView;
+    private $authHelper;
+
 
     /**
-     * Constructor de la clase homeController 
+     * Constructor de la clase HomeController 
     */
     public function __construct() {
-        $this->homeView = new homeView();
+        $this->homeView = new HomeView();
+        $this->authHelper = new AuthHelper();
     }
 
     /**
      * Funcion que muestra el Home
      */
     function showHome(){
+        $this->authHelper->checkSessionActive();
         $this->homeView->renderHome();
     }
 }
