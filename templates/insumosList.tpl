@@ -19,37 +19,43 @@
     </form>   
 </div>
 
-<table class='table m-4'>
-    <thead>
-        <tr>
-            <th>Codigo</th>
-            <th>Insumo</th>
-            <th>Unidad de Medida</th>
-            <th>Tipo de Insumo</th>
-            <th>Acciones</th>
-        </tr>
-    <thead>
-    <tbody>
-
-        {foreach from=$insumos item=$insumo}
+<div class='tabla'>
+    <table class='table m-4'>
+        <thead>
             <tr>
-                <td>{$insumo->id_insumo}</td>
-                <td>{$insumo->insumo}</td>
-                <td>{$insumo->unidad_medida}</td>
-                {foreach from=$tiposInsumos item=$tipoInsumo}
-                    {if $insumo->id_tipo_insumo == $tipoInsumo->id_tipo_insumo}
-                        <td>{$tipoInsumo->tipo_insumo}</td>
-                    {/if}
-                {/foreach}
-                <td>
-                    <a href='View_Insumo/{$insumo->id_insumo}' type='button' class='btn btn-primary ml-auto'>Ver</a>
-                    <a href='Edit_Insumo/{$insumo->id_insumo}' type='button' class='btn btn-success ml-auto'>Editar</a> 
-                    <a href='Delete_Insumo/{$insumo->id_insumo}' type='button' class='btn btn-danger ml-auto'>Eliminar</a>
-                </td>
+                <th>Codigo</th>
+                <th>Insumo</th>
+                <th>Unidad de Medida</th>
+                <th>Tipo de Insumo</th>
+                <th>Acciones</th>
             </tr>
-        {/foreach}
-    </tbody>   
-</table>
+        <thead>
+        <tbody>
+
+            {foreach from=$insumos item=$insumo}
+                <tr>
+                    <td>{$insumo->id_insumo}</td>
+                    <td>{$insumo->insumo}</td>
+                    <td>{$insumo->unidad_medida}</td>
+                    {foreach from=$tiposInsumos item=$tipoInsumo}
+                        {if $insumo->id_tipo_insumo == $tipoInsumo->id_tipo_insumo}
+                            <td>{$tipoInsumo->tipo_insumo}</td>
+                        {/if}
+                    {/foreach}
+                    <td>
+                        {if isset($smarty.session.USER_ID)}
+                            <a href='View_Insumo/{$insumo->id_insumo}' type='button' class='btn btn-primary ml-auto'>Ver</a>
+                            <a href='Edit_Insumo/{$insumo->id_insumo}' type='button' class='btn btn-success ml-auto'>Editar</a> 
+                            <a href='Delete_Insumo/{$insumo->id_insumo}' type='button' class='btn btn-danger ml-auto'>Eliminar</a>
+                        {else}
+                            <a href='View_Insumo/{$insumo->id_insumo}' type='button' class='btn btn-primary ml-auto'>Ver</a>
+                        {/if}
+                    </td>
+                </tr>
+            {/foreach}
+        </tbody>   
+    </table>
+</div>
 
 <div class='m-4'>
     {if $cantidad > 1}
@@ -61,10 +67,11 @@
     {/if}
 </div>
 
-<div class="m-4">
-    <a href="Add_Insumo">
-      <button class='btn btn-primary ml-auto' type="button">Agregar Insumo</button>
-    </a>
-</div> 
-
+{if isset($smarty.session.USER_ID)}
+    <div class="m-4">
+        <a href="Add_Insumo">
+        <button class='btn btn-primary ml-auto' type="button">Agregar Insumo</button>
+        </a>
+    </div> 
+{/if}
 {include file="footer.tpl"}
