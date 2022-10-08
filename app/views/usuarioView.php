@@ -2,24 +2,18 @@
 
 require_once './libs/smarty-4.2.1/libs/Smarty.class.php';
 
-class usuarioView{
+class UsuarioView{
 
     private $smarty;
 
     /**
      * Constructor que instancia Smarty.
      */
-    public function __construct() {
+    function __construct() {
         $this->smarty = new Smarty();
     }
 
-    public function renderFormLogin() {
-        $titulo = "Login";
-        $this->smarty->assign('titulo', $titulo);
-        $this->smarty->display('loginForm.tpl');
-    }
-
-    public function renderUsuariosList($usuarios) {
+    function renderUsuariosList($usuarios) {
         $titulo = "Listado de Usuarios";
         $cantidad = count($usuarios);
         $this->smarty->assign('titulo', $titulo);
@@ -28,7 +22,7 @@ class usuarioView{
         $this->smarty->display('usuariosList.tpl');
     }
 
-    public function renderFormAddUsuario() {
+    function renderFormAddUsuario() {
         $titulo = "Agregar un Usuario";
         $action = "Save_Usuario";
         $boton = "Guardar";
@@ -48,5 +42,4 @@ class usuarioView{
         $this->smarty->assign('usuario', $usuario);
         $this->smarty->display('usuarioAdd_Update.tpl');
     }
-
 }
