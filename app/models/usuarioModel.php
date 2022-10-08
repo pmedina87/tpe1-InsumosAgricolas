@@ -1,6 +1,6 @@
 <?php
 
-class usuarioModel {
+class UsuarioModel {
 
     private $db;
 
@@ -69,7 +69,7 @@ class usuarioModel {
      * Devuelve un usuario segun el nombre de usuario
      */
     function getByUsername($user){
-        $query = $this->db->prepare("SELECT usuario, contrasenia FROM usuario WHERE usuario = ?");
+        $query = $this->db->prepare("SELECT id_usuario, usuario, contrasenia FROM usuario WHERE usuario = ?");
         $query->execute([$user]);
         $usuario = $query->fetch(PDO::FETCH_OBJ);
         return $usuario;
