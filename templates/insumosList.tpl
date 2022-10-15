@@ -43,12 +43,10 @@
                         {/if}
                     {/foreach}
                     <td>
+                        <a href='View_Insumo/{$insumo->id_insumo}' type='button' class='btn btn-primary ml-auto'>Ver</a>
                         {if isset($smarty.session.USER_ID)}
-                            <a href='View_Insumo/{$insumo->id_insumo}' type='button' class='btn btn-primary ml-auto'>Ver</a>
                             <a href='Edit_Insumo/{$insumo->id_insumo}' type='button' class='btn btn-success ml-auto'>Editar</a> 
                             <a href='Delete_Insumo/{$insumo->id_insumo}' type='button' class='btn btn-danger ml-auto'>Eliminar</a>
-                        {else}
-                            <a href='View_Insumo/{$insumo->id_insumo}' type='button' class='btn btn-primary ml-auto'>Ver</a>
                         {/if}
                     </td>
                 </tr>
